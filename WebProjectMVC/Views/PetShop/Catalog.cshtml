@@ -1,0 +1,53 @@
+﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<WebProjectMVC.Models.Animal>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Catalog</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <script>
+        function SelectChange() {
+            const value = document.getElementById("selectID").value;
+            window.location.href = `/PetShop/FilterdCatalog/${value}`;
+        };
+    </script>
+</head>
+<body>
+    @await Html.PartialAsync("PartialView")
+    <div id="s">
+        <label for="Category">Please select a category: </label>
+        <select id="selectID" onchange="SelectChange()">
+            <option value="0" selected disabled>All animals</option>
+            @foreach (var item in ViewBag.GetCategories)
+            {
+                <option value="@item.CategoryId">@item.CategoryName</option>
+            }
+        </select>
+    </div>
+
+    <div id="y">
+        <table id="table" width="100%">
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>More Details</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="~/Images/@item.PictureName" /></td>
+                    <td>@item.Name</td>
+                    <td> <a asp-controller="PetShop" asp-action="AnimalDetail" asp-route-id="@item.AnimalID">show data</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>

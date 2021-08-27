@@ -1,0 +1,97 @@
+﻿@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
+<style>
+    #headline {
+        font-size: 50px;
+        position: absolute;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%, -50%);
+        color: blueviolet;
+    }
+
+    #map {
+        position: absolute;
+        left: 5%;
+        top: 5%;
+        color: deeppink;
+    }
+
+    /*#region Navigation Bar */
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #f1f1f1;
+        border: 1px solid #555;
+    }
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    li {
+        text-align: center;
+        border-bottom: 1px solid #555;
+        background-color: #ffffcc;
+    }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+    /*#endregion */
+
+    /*#region BackGround */
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hero-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/Images/background3.jpg");
+        height: 275px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    /*#endregion */
+
+</style>
+<html>
+<body>
+
+    <div class="hero-image">
+        <h1 id="headline">The Best Pet Shop In The World</h1>
+        <div id="map">
+
+            <ul>
+                <li>@Html.ActionLink("Home", "Shop")</li>
+                <li>@Html.ActionLink("Catalog", "Catalog")</li>
+                <li>@Html.ActionLink("Administrator", "Administrator")</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

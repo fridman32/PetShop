@@ -1,0 +1,75 @@
+﻿@model WebProjectMVC.Models.CreateNewAnimal
+@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add New Animal</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    @await Html.PartialAsync("PartialView")
+    <form enctype="multipart/form-data" asp-controller="PetShop" asp-action="Add" method="post">
+        <div>
+            <label asp-for="Name"></label>
+            <div>
+                <input asp-for="Name" placeholder="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="Age"></label>
+            <div>
+                <input asp-for="Age" placeholder="Age" />
+                <span asp-validation-for="Age"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="Description"></label>
+            <div>
+                <input asp-for="Description" placeholder="Description" />
+                <span asp-validation-for="Description"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="Category"></label>
+            <div>
+                <select asp-for="CategoryId">
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                        <option value="@item.CategoryId" selected>
+                            @item.CategoryName
+                        </option>
+                    }
+                    <option selected>Choose option</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <label asp-for="Picture"></label>
+            <div>
+                <input asp-for="Picture" placeholder="Picture" />
+                <label>Choose File</label>
+            </div>
+        </div>
+        <p style="color: red;">@TempData["ProcessMessage"]</p>
+
+        <div asp-validation-summary="All"></div>
+        <button type="submit">ADD</button>
+    </form>
+    @if (TempData["displayModal"] != null)
+    {
+        var modal = TempData["displayModal"].ToString();
+        <script type='text/javascript'>
+        $(document).ready(function(){
+            $('#@modal').modal('show');
+        });
+        </script>
+    }
+</body>
+</html>

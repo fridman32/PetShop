@@ -1,0 +1,75 @@
+﻿@model WebProjectMVC.Models.CreateNewAnimal
+@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    @await Html.PartialAsync("PartialView")
+    <h4>Animal</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <form enctype="multipart/form-data" asp-controller="PetShop" asp-action="Edit" method="post">
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Age" class="control-label"></label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Picture" class="control-label"></label>
+                    <input asp-for="Picture" class="form-control" />
+                    <span asp-validation-for="Picture" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Category"></label>
+                    <div>
+                        <select asp-for="CategoryId">
+                            @foreach (var item in ViewBag.Categories)
+                            {
+                                <option value="@item.CategoryId" selected>
+                                    @item.CategoryName
+                                </option>
+                            }
+                            <option selected>Choose option</option>
+                        </select>
+                    </div>
+                </div>
+                <p style="color: red;">@TempData["ProcessMessage"]</p>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (TempData["displayModal"] != null)
+    {
+        var modal = TempData["displayModal"].ToString();
+        <script type='text/javascript'>
+        $(document).ready(function(){
+            $('#@modal').modal('show');
+        });
+        </script>
+    }
+</body>
+</html>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Models\Animal.cs" />
+    <Content Include="Models\Category.cs" />
+    <Content Include="Models\Comment.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\DogIMG.jpg" />
+    <None Include="wwwroot\Images\FishIMG.jpg" />
+    <None Include="wwwroot\Images\LionIMG.jpg" />
+    <None Include="wwwroot\StyleSheet.css" />
+  </ItemGroup>
+
+</Project>

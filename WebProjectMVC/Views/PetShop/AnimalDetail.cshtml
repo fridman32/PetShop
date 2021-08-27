@@ -1,0 +1,60 @@
+﻿@model WebProjectMVC.Models.Animal
+@addTagHelper*,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AnimalDetail</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    @await Html.PartialAsync("PartialView")
+    <div id="d">
+        <div class="row">
+            <div class="column">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Description</th>
+                        <th>Category Name</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.Name</td>
+                        <td>@Model.Age</td>
+                        <td>@Model.Description</td>
+                        <td>@ViewBag.CategoryName.CategoryName</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="column">
+                <table>
+                    <tr>
+                        <th>Comments</th>
+                    </tr>
+
+                    @foreach (var item in ViewBag.Comments)
+                    {
+                        <tr>
+                            <td>@item.CommentText</td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+        </div> 
+        <form asp-action="AddComment" asp-route-Id="@Model.AnimalID" name="comment">
+            <input type="text" name="comment" placeholder="Comment here" />
+            <button type="submit" name="comment">Submit Comment</button>
+        </form>
+    </div>
+
+</body>
+</html>
